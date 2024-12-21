@@ -9,19 +9,42 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+
+    //curently breaking cart, obviously missing things
+    //updateQuantity.map(() => (item.quantity * item.cost))
+
+
   };
 
   const handleContinueShopping = (e) => {
-   
+
+    //Doesn't appear to be working? But hasn't broken page
+    e.preventDefault();
+    setShowPlants(true);
+    setShowCart(false);
+
   };
+
+  //not working, but not breaking
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+    };
+
 
 
 
   const handleIncrement = (item) => {
+
+    //not working, but not breaking anything
+    item.quantity++
+
   };
 
   const handleDecrement = (item) => {
+
+    //not working, but not breaking anything
+    //add the if / else for when there's 0 item
+    item.quantity--
    
   };
 
