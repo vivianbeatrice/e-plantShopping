@@ -2,8 +2,9 @@ import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
+import { useSelector, useDispatch } from "react-redux";
 
-
+ 
 
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
@@ -18,6 +19,11 @@ function ProductList() {
            [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
          }));
       };
+
+
+      const dispatch = useDispatch();
+
+
 
     const plantsArray = [
         {
@@ -260,6 +266,9 @@ const handlePlantsClick = (e) => {
     e.preventDefault();
     setShowCart(false);
   };
+
+  
+
     return (
         <div>
              <div className="navbar" style={styleObj}>

@@ -2,6 +2,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
+ 
+
+//Cart only appears to be breaking if I click to open it after clicking an add to cart button, otherwise it still functions
+
+
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
@@ -10,22 +15,24 @@ const CartItem = ({ onContinueShopping }) => {
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
 
-    //curently breaking cart, obviously missing things
-    //updateQuantity.map(() => (item.quantity * item.cost))
+    //???
 
+    let totalAmount = 0;
+            cart.forEach((item) => {
+                totalAmount += item.cost * item.quantity;
+            });
 
   };
 
   const handleContinueShopping = (e) => {
 
-    //Doesn't appear to be working? But hasn't broken page
+    //???
     e.preventDefault();
-    setShowPlants(true);
-    setShowCart(false);
+    onContinueShopping(e);
 
   };
 
-  //not working, but not breaking
+  //???
   const handleCheckoutShopping = (e) => {
     alert('Functionality to be added for future reference');
     };
@@ -35,24 +42,48 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleIncrement = (item) => {
 
-    //not working, but not breaking anything
-    item.quantity++
+    //???
+    
+
+    dispatch(updateQuantity(item.quantity++))
+
 
   };
 
   const handleDecrement = (item) => {
 
-    //not working, but not breaking anything
-    //add the if / else for when there's 0 item
-    item.quantity--
-   
+    //???
+    
+        if (item.quantity > 1){
+            dispatch(updateQuantity(item.quantity--));
+        }
+        else {
+            handleRemove(item);
+        }
+    
   };
 
   const handleRemove = (item) => {
+
+    //???
+
+    dispatch(removeItem(item))
+
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+
+    //incomplete
+    //needs logic for getting plant info by type
+
+    let totalCost = 0;
+            items.forEach((item) => {
+                totalCost += item.cost * item.quantity;
+            });
+
+
+
   };
 
   return (
