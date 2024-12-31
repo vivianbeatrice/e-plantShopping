@@ -19,9 +19,9 @@ const CartItem = ({ onContinueShopping }) => {
 
     let totalAmount = 0;
             cart.forEach((item) => {
-                totalAmount += item.cost * item.quantity;
+                totalAmount += item.cost.replace('$', '') * item.quantity;
             });
-
+            return totalAmount;
   };
 
   const handleContinueShopping = (e) => {
@@ -45,7 +45,7 @@ const CartItem = ({ onContinueShopping }) => {
     //???
     
 
-    dispatch(updateQuantity(item.quantity++))
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }))
 
 
   };
@@ -55,7 +55,7 @@ const CartItem = ({ onContinueShopping }) => {
     //???
     
         if (item.quantity > 1){
-            dispatch(updateQuantity(item.quantity--));
+            dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
         }
         else {
             handleRemove(item);
@@ -67,7 +67,7 @@ const CartItem = ({ onContinueShopping }) => {
 
     //???
 
-    dispatch(removeItem(item))
+    dispatch(removeItem(item.name))
 
   };
 
@@ -77,11 +77,8 @@ const CartItem = ({ onContinueShopping }) => {
     //incomplete
     //needs logic for getting plant info by type
 
-    let totalCost = 0;
-            items.forEach((item) => {
-                totalCost += item.cost * item.quantity;
-            });
-
+    return item.cost.replace('$', '') * item.quantity;
+    
 
 
   };
@@ -111,7 +108,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1">Checkout under construction</button>
       </div>
     </div>
   );
